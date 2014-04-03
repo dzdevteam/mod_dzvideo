@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" client="site" version="3.1" method="upgrade">
+    <name>mod_dzvideo</name>
+    <creationDate>April 2014</creationDate>
+    <author>DZ Team</author>
+    <authorEmail>dev@dezign.vn</authorEmail>
+    <authorUrl>dezign.vn</authorUrl>
+    <copyright>(C) 2014 DZ Creative Studio. All rights reserved.</copyright>
+    <version>1.0.0</version>
+    <description>MOD_DZVIDEO_DESC</description>
+
+    <files>
+        <filename>mod_dzvideo.xml</filename>
+        <filename module="mod_dzvideo">mod_dzvideo.php</filename>
+        <filename>index.html</filename>
+        <filename>helper.php</filename>
+        <folder>tmpl</folder>
+    </files>
+
+    <languages>
+        <!-- Any language files included with the module -->
+        <language tag="en-GB">en-GB.mod_dzvideo.ini</language>
+        <language tag="en-GB">en-GB.mod_dzvideo.sys.ini</language>
+        <language tag="vi-VN">vi-VN.mod_dzvideo.ini</language>
+        <language tag="vi-VN">vi-VN.mod_dzvideo.sys.ini</language>
+    </languages>
+
+    <!-- Optional parameters -->
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field name="mode" type="list" default="normal"
+                    label="MOD_DZVIDEO_FIELD_MODE_LABEL"
+                    description="MOD_DZVIDEO_FIELD_MODE_DESC">
+                    <option value="normal">MOD_DZVIDEO_FIELD_MODE_OPTION_NORMAL</option>
+                    <option value="dynamic">MOD_DZVIDEO_FIELD_MODE_OPTION_DYNAMIC</option>
+                </field>
+            </fieldset>
+            <fieldset name="filtering"
+                label="MOD_DZVIDEO_FIELD_GROUP_FILTERING_LABEL">
+                <field name="catid" type="category" extension="com_dzvideo" size="5"
+                    label="JCATEGORY"
+                    description="MOD_DZVIDEO_FIELD_CATEGORY_DESC"
+                >
+                    <option value="">JOPTION_ALL_CATEGORIES</option>
+                </field>
+
+                <field name="only_featured" type="radio" default="0" class="btn-group btn-group-yesno"
+                    label="MOD_DZVIDEO_FIELD_SHOWFEATURED_LABEL"
+                    description="MOD_DZVIDEO_FIELD_SHOWFEATURED_DESC"
+                >
+                  <option value="1">JYES</option>
+                  <option value="0">JNO</option>
+                </field>
+
+                <field name="count" type="text" default="8"
+                    label="MOD_DZVIDEO_FIELD_COUNT_LABEL"
+                    description="MOD_DZVIDEO_FIELD_COUNT_DESC" filter="int" />
+
+                <field name="videos_per_row" type="text" default="4" filter="int"
+                    label="MOD_DZVIDEO_FIELD_VIDEOS_PER_ROW_LABEL"
+                    description="MOD_DZVIDEO_FIELD_VIDEOS_PER_ROW_DESC" />
+
+
+                <field name="filteringspacer2" type="spacer" hr="true" />
+
+                <field name="date_filtering" type="list" default="off"
+                    label="MOD_DZVIDEO_FIELD_DATEFILTERING_LABEL"
+                    description="MOD_DZVIDEO_FIELD_DATEFILTERING_DESC">
+                    <option value="off">MOD_DZVIDEO_OPTION_OFF_VALUE
+                    </option>
+                    <option value="range">MOD_DZVIDEO_OPTION_DATERANGE_VALUE
+                    </option>
+                    <option value="relative">MOD_DZVIDEO_OPTION_RELATIVEDAY_VALUE
+                    </option>
+                </field>
+
+                <field name="date_field" type="list" default="a.created"
+                    label="MOD_DZVIDEO_FIELD_DATERANGEFIELD_LABEL"
+                    description="MOD_DZVIDEO_FIELD_DATERANGEFIELD_DESC">
+                    <option value="a.created">MOD_DZVIDEO_OPTION_CREATED_VALUE
+                    </option>
+                    <option value="a.modified">MOD_DZVIDEO_OPTION_MODIFIED_VALUE
+                    </option>
+                    <option value="a.publish_up">MOD_DZVIDEO_OPTION_STARTPUBLISHING_VALUE
+                    </option>
+                </field>
+
+                <field name="start_date_range" type="calendar"
+                    format="%Y-%m-%d %H:%M:%S"
+                    label="MOD_DZVIDEO_FIELD_STARTDATE_LABEL"
+                    description="MOD_DZVIDEO_FIELD_STARTDATE_DESC"
+                    size="22"
+                    filter="user_utc" />
+
+                <field name="end_date_range" type="calendar"
+                    format="%Y-%m-%d %H:%M:%S"
+                    label="MOD_DZVIDEO_FIELD_ENDDATE_LABEL"
+                    description="MOD_DZVIDEO_FIELD_ENDDATE_DESC"
+                    size="22"
+                    filter="user_utc" />
+
+                <field name="relative_date" type="text" default="30"
+                    label="MOD_DZVIDEO_FIELD_RELATIVEDATE_LABEL"
+                    description="MOD_DZVIDEO_FIELD_RELATIVEDATE_DESC" />
+            </fieldset>
+
+            <fieldset name="ordering"
+                label="MOD_DZVIDEO_FIELD_GROUP_ORDERING_LABEL">
+                <field name="video_ordering" type="list"
+                    default="a.created"
+                    label="MOD_DZVIDEO_FIELD_ORDERING_LABEL"
+                    description="MOD_DZVIDEO_FIELD_ORDERING_DESC">
+                    <option value="a.ordering">MOD_DZVIDEO_OPTION_ORDERING_VALUE
+                    </option>
+                    <option value="a.hits">MOD_DZVIDEO_OPTION_HITS_VALUE
+                    </option>
+                    <option value="a.title">JGLOBAL_TITLE
+                    </option>
+                    <option value="a.id">MOD_DZVIDEO_OPTION_ID_VALUE
+                    </option>
+                    <option value="a.alias">JFIELD_ALIAS_LABEL
+                    </option>
+                    <option value="a.created">MOD_DZVIDEO_OPTION_CREATED_VALUE
+                    </option>
+                    <option value="modified">MOD_DZVIDEO_OPTION_MODIFIED_VALUE
+                    </option>
+                    <option value="publish_up">MOD_DZVIDEO_OPTION_STARTPUBLISHING_VALUE
+                    </option>
+                    <option value="a.publish_down">MOD_DZVIDEO_OPTION_FINISHPUBLISHING_VALUE
+                    </option>
+                </field>
+
+                <field name="video_ordering_direction" type="list"
+                    default="DESC"
+                    label="MOD_DZVIDEO_FIELD_ORDERINGDIR_LABEL"
+                    description="MOD_DZVIDEO_FIELD_ORDERINGDIR_DESC">
+                    <option value="DESC">MOD_DZVIDEO_OPTION_DESCENDING_VALUE
+                    </option>
+                    <option value="ASC">MOD_DZVIDEO_OPTION_ASCENDING_VALUE
+                    </option>
+                </field>
+            </fieldset>
+
+            <fieldset name="advanced">
+                <field name="layout" type="modulelayout"
+                    label="JFIELD_ALT_LAYOUT_LABEL"
+                    description="JFIELD_ALT_MODULE_LAYOUT_DESC" />
+
+                <field name="moduleclass_sfx" type="textarea" rows="3"
+                    label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+                    description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+
+                <field name="cache" type="list"
+                    default="1"
+                    label="COM_MODULES_FIELD_CACHING_LABEL"
+                    description="COM_MODULES_FIELD_CACHING_DESC"
+                >
+                    <option value="1">JGLOBAL_USE_GLOBAL</option>
+                    <option value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+                </field>
+
+                <field name="cache_time" type="text"
+                    default="900"
+                    label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
+                    description="COM_MODULES_FIELD_CACHE_TIME_DESC" />
+                <field
+                    name="cachemode"
+                    type="hidden"
+                    default="static">
+                    <option
+                        value="static"></option>
+                </field>
+            </fieldset>
+        </fields>
+    </config>
+</extension>
