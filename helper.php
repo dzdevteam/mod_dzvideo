@@ -41,6 +41,8 @@ abstract class modDZVideoHelper
                 if (!empty($tagIds)) {
                     $model->setState('filter.tag_ids', $tagIds);
                     $model->setState('filter.exclude_id', (int) $video_id);
+                } else {
+                    return $items;
                 }
             } else {
                 return $items;

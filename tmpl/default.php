@@ -9,6 +9,11 @@
 
 // no direct access
 defined('_JEXEC') or die;
+if (empty($videos)) {
+  if ($mode == 'dynamic')
+    echo JText::_('MOD_DZVIDEO_NO_RELATED_VIDEOS');
+    return;
+}
 ?>
 <div class="dzvideo-module<?php echo $moduleclass_sfx; ?>">
   <?php

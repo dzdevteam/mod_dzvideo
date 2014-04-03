@@ -17,9 +17,7 @@ $moduleclass_sfx = htmlspecialchars($params->get('moduleclass_sfx'));
 
 $videos = modDZVideoHelper::getList($params);
 $videos_per_row = $params->get('videos_per_row', 4);
+$mode = $params->get('mode', 'normal');
 
-if (empty($videos))
-  return;
-  
 // Display template
 require JModuleHelper::getLayoutPath('mod_dzvideo', $params->get('layout', 'default'));
