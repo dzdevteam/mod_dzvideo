@@ -33,14 +33,22 @@ abstract class modDZVideoHelper
         case 'dynamic':
             $option = $app->input->get('option');
             $view = $app->input->get('view');
-            $video_id = $app->input->get('id');
+            $item_id = $app->input->get('id');
 
-            if ($option == 'com_dzvideo' && $view = 'video' && (int) $video_id) {
+            if ($option == 'com_dzvideo' && $view == 'video' && (int) $item_id) {
                 $tags = new JHelperTags;
-                $tagIds = $tags->getTagIds($video_id, 'com_dzvideo.video');
+                $tagIds = $tags->getTagIds($item_id, 'com_dzvideo.video');
                 if (!empty($tagIds)) {
                     $model->setState('filter.tag_ids', $tagIds);
-                    $model->setState('filter.exclude_id', (int) $video_id);
+                    $model->setState('filter.exclude_id', (int) $item_id);
+                } else {
+                    return $items;
+                }
+            } elseif ($option == 'com_content' && $view == 'article' && (int) $item_id) {
+                $tags = new JHelperTags;
+                $tagIds = $tags->getTagIds($item_id, 'com_content.article');
+                if (!empty($tagIds)) {
+                    $model->setState('filter.tag_ids', $tagIds);
                 } else {
                     return $items;
                 }
