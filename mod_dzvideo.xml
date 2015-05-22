@@ -49,17 +49,9 @@
                     label="MOD_DZVIDEO_FIELD_SHOWFEATURED_LABEL"
                     description="MOD_DZVIDEO_FIELD_SHOWFEATURED_DESC"
                 >
-                  <option value="1">JYES</option>
                   <option value="0">JNO</option>
+                  <option value="1">JYES</option>
                 </field>
-
-                <field name="count" type="text" default="8"
-                    label="MOD_DZVIDEO_FIELD_COUNT_LABEL"
-                    description="MOD_DZVIDEO_FIELD_COUNT_DESC" filter="int" />
-
-                <field name="videos_per_row" type="text" default="4" filter="int"
-                    label="MOD_DZVIDEO_FIELD_VIDEOS_PER_ROW_LABEL"
-                    description="MOD_DZVIDEO_FIELD_VIDEOS_PER_ROW_DESC" />
 
 
                 <field name="filteringspacer2" type="spacer" hr="true" />
@@ -144,13 +136,22 @@
             
             <fieldset name="display"
                 label="MOD_DZVIDEO_FIELD_GROUP_DISPLAY_LABEL">
+                
+                <field name="count" type="text" default="8"
+                    label="MOD_DZVIDEO_FIELD_COUNT_LABEL"
+                    description="MOD_DZVIDEO_FIELD_COUNT_DESC" filter="int" />
+
+                <field name="videos_per_row" type="text" default="4" filter="int"
+                    label="MOD_DZVIDEO_FIELD_VIDEOS_PER_ROW_LABEL"
+                    description="MOD_DZVIDEO_FIELD_VIDEOS_PER_ROW_DESC" />
+                
                 <field name="show_date" type="radio" default="1" filter="int"
-                    label="MOD_DZVIDEO_FIELD_SHOW_DATE_LABEL" class="btn-group">
+                    label="MOD_DZVIDEO_FIELD_SHOW_DATE_LABEL" class="btn-group btn-group-yesno">
                     <option value="0">JNO</option>
                     <option value="1">JYES</option>
                 </field>
                 <field name="show_intro" type="radio" default="1" filter="int"
-                    label="MOD_DZVIDEO_FIELD_SHOW_INTRO_LABEL" class="btn-group">
+                    label="MOD_DZVIDEO_FIELD_SHOW_INTRO_LABEL" class="btn-group btn-group-yesno">
                     <option value="0">JNO</option>
                     <option value="1">JYES</option>
                 </field>
